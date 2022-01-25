@@ -2,12 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
   <h3 align="center">Employee-Attendance</h3>
-
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -79,7 +74,7 @@ To run a local copy up and running follow these simple example steps.
 ### Installation
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone git@github.com:tetrachromat/employee-attendance.git
    ```
 2. Install NPM packages for backend
    ```sh
