@@ -1,0 +1,24 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  mat-drawer {
+    width: 300px;
+  }
+  
+  mat-drawer-container {
+    height: 100%;
+  }
+  
+  .main {
+    padding: 30px;
+    height: 85vh;
+  }
+
+  /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  mat-drawer-content {
+    margin-left: 0 !important;
+  }
+}

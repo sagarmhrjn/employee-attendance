@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Attendance</h2>
+<mat-dialog-content class="mat-typography">
+    <form id="attendance-form" [formGroup]="attendanceWithAuthForm">
+        <mat-form-field class="attendance-input-form-field">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="john.doe@esewa.com" formControlName="email" required>
+            <mat-error>{{getErrorMessage('email')}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="attendance-input-form-field">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error>{{getErrorMessage('password')}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Check-in/out</mat-label>
+            <mat-select formControlName="check_in_out">
+                <mat-option value="check_in">Check-in</mat-option>
+                <mat-option value="check_out">Check-out</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="attendance-input-form-field">
+            <mat-label>Remarks</mat-label>
+            <textarea matInput placeholder="" formControlName="remarks"></textarea>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="onAttendanceSubmit(attendanceWithAuthForm.value)"
+        [disabled]="!attendanceWithAuthForm.valid">Submit</button>
+</mat-dialog-actions>

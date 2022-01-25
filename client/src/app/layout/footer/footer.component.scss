@@ -1,0 +1,10 @@
+@import '../../scss/variables';
+
+footer{
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(37, 35, 35);
+    color: $white;
+}

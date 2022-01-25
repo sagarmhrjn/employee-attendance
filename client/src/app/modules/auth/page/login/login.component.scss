@@ -1,0 +1,42 @@
+@import '../../../../scss/extend';
+@import '../../../../scss/mixins';
+@import '../../../../scss/variables';
+
+
+.signin-content{
+    @extend display-flex;
+    @include align-items(center);   // Vertically
+}
+
+.signin-image{
+    padding: 10px
+}
+
+.submit-attendance-link{
+    font-size: 14px;
+    color: $dark-gray;
+    display: block;
+    text-align: center;
+    @extend cursor-pointer;
+}
+
+.login-input-form-field{
+    @extend full-width;
+    padding: 5px 0px 5px 2px;
+}
+
+.login-btn{
+    @extend cursor-pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .signin-content{
+        @include flex-direction(column);
+        @include justify-content(center);
+    }
+
+    .signin-image{
+        @include order(2);
+    }
+}
+

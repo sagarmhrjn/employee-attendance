@@ -1,0 +1,26 @@
+<mat-nav-list>
+    <div class="profile-card">
+        <div class="header">
+            <ng-container *ngIf="currentUser">
+                <h2>{{currentUser.first_name }}&nbsp;{{currentUser.last_name}}</h2>
+                <h4>{{currentUser.email}}</h4>
+            </ng-container>
+        </div>
+        <img src="../../../assets/images/default-avatar.png">
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['/dashboard']">
+        <mat-icon aria-hidden="false" aria-label="home icon">home</mat-icon>
+        Dashboard
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['/attendances']">
+        <mat-icon aria-hidden="false" aria-label="timer icon">timer</mat-icon>
+        Attendance
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['/employees']" *ngIf="userRole === 'admin'">
+        <mat-icon aria-hidden="false" aria-label="group icon">groups</mat-icon>
+        Employees
+    </a>
+</mat-nav-list>

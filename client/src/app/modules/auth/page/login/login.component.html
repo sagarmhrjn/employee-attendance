@@ -1,0 +1,30 @@
+<section class="signin-content">
+  <div class="signin-image">
+    <figure>
+      <img src="../../../../../assets/images/signin-image.jpg" alt="sing in image">
+    </figure>
+    <a [routerLink]="" class="submit-attendance-link" (click)="openAttendanceDialog()">Submit an attendance</a>
+  </div>
+  <!-- Sign-in form -->
+  <div class="signin-form">
+    <h1 class="form-title">Sign in</h1>
+    <form id="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+      <mat-form-field class="login-input-form-field">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="john.doe@esewa.com" formControlName="email" required>
+        <mat-error>{{getErrorMessage('email')}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="login-input-form-field">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error>{{getErrorMessage('password')}}</mat-error>
+      </mat-form-field>
+      <div class="form-element login-btn">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Log
+          In</button>
+      </div>
+    </form>
+  </div>
+  <!-- /Sign-in form -->
+</section>

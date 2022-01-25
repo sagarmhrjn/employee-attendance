@@ -1,0 +1,21 @@
+@import '../../../scss/variables';
+@import '../../../scss/extend';
+@import '../../../scss/mixins';
+
+.auth-container{
+    margin: 5px;
+}
+.auth-content{
+    background: $white;
+    @include position-center(750px, 400px);
+    padding: 20px 40px 30px 20px;
+    @include border-radius(25px);
+    @include box-shadow(0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05));
+}
+
+@media screen and (max-width: 768px) {
+    .auth-content{
+        @include position-center(330px, 620px);
+    }
+    
+}

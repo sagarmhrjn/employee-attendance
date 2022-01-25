@@ -1,0 +1,22 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <div class="brand-logo">
+        </div>
+        <mat-icon class="fs-2 menu-icon" (click)="toggleSideBar()">menu</mat-icon>
+
+        <div class="ms-auto pt-4 me-4">
+            <ul>
+                <li>
+                    <mat-icon [matMenuTriggerFor]="menu" class="fs-2 menu-icon">person_outline</mat-icon>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="logout()">
+                            <mat-icon>exit_to_app</mat-icon>
+                            Sign out
+                        </button>
+                    </mat-menu>
+
+                </li>
+            </ul>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,113 @@
+/* Full cale3ndar */
+
+.tooltip.top .tooltip-arrow {
+    border-top-color: #eb89bb;
+}
+
+.tooltip.top-left .tooltip-arrow {
+    border-top-color: #eb89bb;
+}
+
+.tooltip.top-right .tooltip-arrow {
+    border-top-color: #eb89bb;
+}
+
+.tooltip.right .tooltip-arrow {
+    border-right-color: #eb89bb;
+}
+
+.tooltip.left .tooltip-arrow {
+    border-left-color: #eb89bb;
+}
+
+.tooltip.bottom .tooltip-arrow {
+    border-bottom-color: #eb89bb;
+}
+
+.tooltip.bottom-left .tooltip-arrow {
+    border-bottom-color: #eb89bb;
+}
+
+.tooltip.bottom-right .tooltip-arrow {
+    border-bottom-color: #eb89bb;
+}
+
+.tooltip-inner {
+    text-align: left;
+    background-color: #eb89bb;
+}
+
+.tooltip.show p {
+    text-align: left;
+}
+
+:host ::ng-deep .fc-button-primary {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    text-transform: capitalize !important;
+}
+
+:host ::ng-deep .fc-button-group>.fc-button.fc-button-active {
+    color: #1a87f3 !important;
+}
+
+:host ::ng-deep .fc-button-primary:not(:disabled):active:focus,
+.fc-button-primary:not(:disabled).fc-button-active:focus {
+    box-shadow: none !important;
+    color: #1a87f3 !important;
+}
+
+:host ::ng-deep .fc-button .fc-icon {
+    vertical-align: middle;
+    font-size: 1.5em;
+    background: #b2b5b9;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+:host ::ng-deep .fc th {
+    font-weight: 300;
+}
+
+:host ::ng-deep .fc-ltr .fc-dayGrid-view .fc-day-top .fc-day-number {
+    color: #000;
+}
+
+:host ::ng-deep a.fc-more {
+    color: #000;
+}
+
+
+/* TO MAKE CURSOR POINTER WHEN HOVERING ON EVENTS */
+
+:host ::ng-deep .fc-event {
+    cursor: pointer;
+}
+
+:host ::ng-deep .fc-button-group>.fc-button {
+    font-weight: 600 !important;
+    color: #a9a9a9 !important;
+}
+
+:host ::ng-deep .fc-header-toolbar .fc-center {
+    display: flex;
+}
+
+
+/* CHANGE FONT SIZE OF EVENT TITLE */
+:host ::ng-deep .fc-event {
+    font-size: 11px !important;
+}
+
+
+/* REMOVE THE RIGHT EMPTY SPACE IN DAY VIEW OF DASHBOARD */
+:host ::ng-deep .fc-event-container,
+.fc-ltr,
+.fc-time-grid {
+    margin: 0px 0% 0 2px !important;
+}
+
+:host ::ng-deep .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 1em !important;
+}

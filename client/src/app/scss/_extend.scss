@@ -1,0 +1,25 @@
+/* @extend display-flex; */
+display-flex {
+    display: flex;
+    display: -webkit-flex;
+}
+
+full-width{
+    width: 100%;
+}
+
+full-viewport-height{
+    height: 100vh;
+}
+
+text-center{
+    text-align: center;
+}
+
+background-position-center{
+    background-position: center;
+}
+
+cursor-pointer{
+    cursor:pointer
+}

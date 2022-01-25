@@ -1,0 +1,34 @@
+@mixin justify-content($value) {
+	justify-content: $value;
+}
+
+@mixin align-items($value) {
+	align-items: $value;
+}
+
+@mixin border-radius($value) {
+    border-radius: $value;
+}
+
+@mixin box-shadow($value) {
+	box-shadow: $value;
+}
+
+@mixin flex-direction($value) {
+	flex-direction: $value;
+}
+
+@mixin order($value) {
+	order: $value;
+}
+
+@mixin position-center($width, $height){
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: 0;
+    right: 0;
+    width: $width;
+    height: $height;
+}

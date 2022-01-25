@@ -1,0 +1,8 @@
+@import '../../scss/variables';
+@import '../../scss/extend';
+
+.auth-layout-main{
+    background: $smoky-white;
+    @extend full-viewport-height;
+
+}
