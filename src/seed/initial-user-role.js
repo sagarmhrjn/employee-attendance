@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
     try {
         const role_count = await Role.estimatedDocumentCount();
         if (role_count > 0) return;
-        const adminRole = await new Role({ name: "user" }).save();
+        const adminRole = await new Role({ name: "admin" }).save();
         console.log('Admin role created successfully.');
         if (adminRole) {
             const hash = await bcrypt.hash('admin123', 10);
