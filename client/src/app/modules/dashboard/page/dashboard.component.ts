@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Calendar } from '@fullcalendar/core';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -24,13 +24,13 @@ export interface Event {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   userId!: string;
   calendar: any;
   attendances!: Attendance[]
   events: Event[] = []
 
-  private readonly destroy$ = new Subject();
+  private readonly destroy$ = new Subject<void>();
 
   @ViewChild("calendar") calendarEl!: ElementRef;
 
@@ -174,11 +174,17 @@ export class DashboardComponent implements OnInit {
       color = '#009A44';
     } else if (attendance.status === 'missed') {
       color = '#ffcc00';
-    } else if(attendance.status === 'absent') {
+    } else if (attendance.status === 'absent') {
       color = '#cc3300';
-    }else{
+    } else {
       color = '#3498DB';
     }
     return color
   }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
 }

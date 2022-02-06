@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   userRole: string = ''
   currentUser!: User
-  private readonly destroy$ = new Subject();
+  private readonly destroy$ = new Subject<void>();
 
   constructor(
     private _tokenStorageService: TokenStorageService,
@@ -53,9 +53,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
       )
       .subscribe();
   }
-  
-  ngOnDestroy(): void {
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }
