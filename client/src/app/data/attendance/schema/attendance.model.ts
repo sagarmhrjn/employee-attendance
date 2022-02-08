@@ -20,6 +20,7 @@ export interface Attendance {
     status: string;
     remarks: string;
     user: any;
+    createdAt?: string
 }
 
 export interface AttendanceDTO {

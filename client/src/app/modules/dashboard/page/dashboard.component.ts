@@ -156,8 +156,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
             eventsData.push({
               id: attendance._id,
               title: start_date + '-' + end_date + ' (' + attendance.user.first_name + attendance.user.last_name + ' ' + status + ')',
-              start: moment.utc(attendance.start_date).local().format('YYYY-MM-DD'),
-              end: moment.utc(attendance.end_date).local().format('YYYY-MM-DD'),
+              start:  attendance.start_date ? moment.utc(attendance.start_date).local().format('YYYY-MM-DD') : '',
+              end:  attendance.start_date ? moment.utc(attendance.end_date).local().format('YYYY-MM-DD') : '',
               color: this.setEventColor(attendance)
             })
           })
