@@ -60,9 +60,9 @@ app.get('/', function (req, res) {
 
 require("./seed/initial-user-role")
 //routes which should handle requests
-app.use("/rest/v1/roles", [checkAuth, isAdmin], roleRoutes);
+app.use("/rest/v1/roles", roleRoutes);
 app.use("/rest/v1/auth", authRoutes);
-app.use("/rest/v1/users", checkAuth, userRoutes);
+app.use("/rest/v1/users", userRoutes);
 app.use("/rest/v1/attendances", attendanceRoutes);
 
 
