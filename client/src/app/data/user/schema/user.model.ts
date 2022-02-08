@@ -3,7 +3,7 @@ export interface User {
     first_name: string;
     last_name: string;
     email: string;
-    role: string;
+    role: Role;
     role_name: string;
 }
 
@@ -13,4 +13,9 @@ export interface UserDTO {
     email: string;
     password: string;
     role: string;
+}
+
+export interface Role{
+    id:string;
+    name:string
 }
