@@ -14,3 +14,22 @@
       }
     }
   }
+
+:host ::ng-deep .mat-list-item-content{
+  color: blue;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+:host ::ng-deep mat-list-option:hover, 
+.mat-list-option:focus, 
+.mat-nav-list 
+.mat-list-item:hover, 
+.mat-nav-list 
+.mat-list-item:focus, 
+.mat-action-list 
+.mat-list-item:hover, 
+.mat-action-list 
+.mat-list-item:focus {
+  background: rgba(0,0,0,0.09);
+}

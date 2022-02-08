@@ -4,6 +4,7 @@ import { TokenStorageService } from 'src/app/core/services/token-storage.service
 import { RoleService } from 'src/app/data/role/service/role.service';
 import { User } from 'src/app/data/user/schema/user.model';
 import { UserService } from 'src/app/data/user/service/user.service';
+import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,7 +20,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   constructor(
     private _tokenStorageService: TokenStorageService,
     private _roleService: RoleService,
-    private _userService: UserService
+    private _userService: UserService,
+    private _sharedDataService: SharedDataService
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +35,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
   getRole(id: string): void {
     this._roleService.getRole(id)
       .pipe(
-        map((data) => this.userRole = data.name),
+        tap((data) => {
+          this.userRole = data.name
+          this._sharedDataService.sendCurrentUserRole(this.userRole)
+        }),
         catchError(err => {
           return throwError(() => err);
         }),
