@@ -10,20 +10,12 @@ const User = require("../models/user.model");
 // Get all attendances
 exports.get_all_attendances = (req, res, next) => {
     Attendance.find()
+        .populate('user','-password -__v')
         .exec()
         .then((docs) => {
             const response = {
                 count: docs.length,
-                data: docs.map((doc) => {
-                    return {
-                        start_date: doc.start_date,
-                        end_date: doc.end_date,
-                        status: doc.status,
-                        remarks: doc.remarks,
-                        _id: doc._id,
-                        user: doc.user
-                    };
-                }),
+                data: docs
             };
             res.status(200).json(response);
         })
