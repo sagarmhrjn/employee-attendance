@@ -26,6 +26,7 @@ import { TokenStorageService } from 'src/app/core/services/token-storage.service
 export class AttendanceComponent implements OnInit, OnDestroy {
   dataToDisplay: Attendance[] = [];
 
+  user_id: string = ''
   users: User[] = [];
   userRole: string = ''
 
@@ -61,6 +62,7 @@ export class AttendanceComponent implements OnInit, OnDestroy {
   getCurrentUser() {
     const currentUser = this._tokenStorageService.getDecodedAccessToken();
     if (currentUser) {
+      this.user_id = currentUser.userId
       this.getAttendances(currentUser.userId);
     }
   }
@@ -163,7 +165,8 @@ export class AttendanceComponent implements OnInit, OnDestroy {
       data: {
         title: 'Update attendance',
         data,
-        action: 'edit'
+        action: 'edit',
+        role: this.userRole
       },
     });
 
@@ -252,7 +255,8 @@ export class AttendanceComponent implements OnInit, OnDestroy {
       data: {
         title: 'Create attendance',
         action: 'create',
-        users: this.users
+        users: this.users,
+        role: this.userRole
       },
     });
 
@@ -287,9 +291,11 @@ export class AttendanceComponent implements OnInit, OnDestroy {
         )
         .subscribe({
           next: (attendance: Attendance) => {
-            this.dataToDisplay = [...this.dataToDisplay, attendance]
-            this.dataSource.data = this.dataToDisplay
-            this._toastrService.success('Attendance create successfull.', '', { timeOut: 3000 })
+            if (this.user_id === attendance.user._id) {
+              this.dataToDisplay = [...this.dataToDisplay, attendance]
+              this.dataSource.data = this.dataToDisplay
+            }
+            this._toastrService.success(`Attendance create successfull. `, '', { timeOut: 3000 })
           },
           error: (err) => {
             this._toastrService.error(err, '', { timeOut: 3000 })

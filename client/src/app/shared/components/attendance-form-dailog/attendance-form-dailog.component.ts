@@ -46,7 +46,11 @@ export class AttendanceFormDailogComponent implements OnInit, AfterViewInit, OnD
 
     }
     if (this.data.action === 'edit') {
-      this._sharedFormService.setAttendanceCreateValidation()
+      if (this.data.role === 'admin') {
+        this._sharedFormService.setAttendanceCreateValidation()
+      } else {
+        this._sharedFormService.setAttendanceUpdateValidation()
+      }
       this.patchAttendanceForm(this.data['data'])
     }
   }

@@ -120,7 +120,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             let status = attendance.status ? attendance.status : ''
             eventsData.push({
               id: attendance._id,
-              title: start_date + '-' + end_date + ' (' + status + ')',
+              title: start_date + '-' + end_date + ' (' + attendance.user.first_name + attendance.user.last_name + ' ' + status + ')',
               start: moment.utc(attendance.start_date).local().format('YYYY-MM-DD'),
               end: moment.utc(attendance.end_date).local().format('YYYY-MM-DD'),
               color: this.setEventColor(attendance)
@@ -152,10 +152,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.attendances.map((attendance) => {
             let start_date = attendance.start_date ? moment.utc(attendance.start_date, "hh:mm").local().format('LT') : ''
             let end_date = attendance.end_date ? moment.utc(attendance.end_date, "hh:mm").local().format('LT') : ''
-            let status = attendance.status ? attendance.status : 'Please submit your attendance'
+            let status = attendance.status ? attendance.status : ''
             eventsData.push({
               id: attendance._id,
-              title: start_date + '-' + end_date + ' (' + status + ')',
+              title: start_date + '-' + end_date + ' (' + attendance.user.first_name + attendance.user.last_name + ' ' + status + ')',
               start: moment.utc(attendance.start_date).local().format('YYYY-MM-DD'),
               end: moment.utc(attendance.end_date).local().format('YYYY-MM-DD'),
               color: this.setEventColor(attendance)

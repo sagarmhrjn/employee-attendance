@@ -10,7 +10,7 @@ const User = require("../models/user.model");
 // Get all attendances
 exports.get_all_attendances = (req, res, next) => {
     Attendance.find()
-        .populate('user','-password -__v')
+        .populate('user', '-password -__v')
         .exec()
         .then((docs) => {
             const response = {
@@ -31,7 +31,7 @@ exports.get_all_attendances = (req, res, next) => {
 exports.get_user_attendances = (req, res, next) => {
     const id = req.query.userId;
     Attendance.find({ user: id })
-        .populate("user", "_id")
+        .populate("user")
         .exec()
         .then((docs) => {
             if (docs) {

@@ -137,7 +137,8 @@ export class EmployeeAttendanceComponent implements OnInit {
       data: {
         title: 'Update attendance',
         data,
-        action: 'edit'
+        action: 'edit',
+        role: this.userRole
       },
     });
 
@@ -226,7 +227,8 @@ export class EmployeeAttendanceComponent implements OnInit {
       data: {
         title: 'Create attendance',
         action: 'create',
-        users: this.users
+        users: this.users,
+        role: this.userRole
       },
     });
 
@@ -261,9 +263,12 @@ export class EmployeeAttendanceComponent implements OnInit {
         )
         .subscribe({
           next: (attendance: Attendance) => {
-            this.dataToDisplay = [...this.dataToDisplay, attendance]
-            this.dataSource.data = this.dataToDisplay
-            this._toastrService.success('Attendance create successfull.', '', { timeOut: 3000 })
+            if (attendance.user._id === userId) {
+              this.dataToDisplay = [...this.dataToDisplay, attendance]
+              this.dataSource.data = this.dataToDisplay
+            }
+            this._toastrService.success(`Attendance create successfull for ${attendance.user.first_name} ${attendance.user.last_name}.`, '', { timeOut: 3000 })
+
           },
           error: (err) => {
             this._toastrService.error(err, '', { timeOut: 3000 })

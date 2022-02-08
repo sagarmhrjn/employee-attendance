@@ -61,7 +61,7 @@ export class EmployeeComponent implements OnInit, OnDestroy {
       });
   }
 
-  // Open add employee dialog
+// Open add employee dialog
   openAddEmployeeDialog(): void {
     const dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
       panelClass: 'mat-dialog-responsive',
@@ -76,7 +76,7 @@ export class EmployeeComponent implements OnInit, OnDestroy {
     })
   }
 
-  // Register employee
+// Register employee
   registerEmployee(data: UserDTO): void {
     this._authService.register(data)
       .pipe(

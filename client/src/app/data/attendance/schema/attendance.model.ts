@@ -19,7 +19,7 @@ export interface Attendance {
     end_date: string;
     status: string;
     remarks: string;
-    user: string;
+    user: any;
 }
 
 export interface AttendanceDTO {

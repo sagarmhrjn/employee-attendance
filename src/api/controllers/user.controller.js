@@ -123,7 +123,7 @@ exports.create_employee_attendance = async (req, res, next) => {
             const createdAttendance = await new Attendance(attendanceObj).save();
             return res.status(201).json({
                 message: "Attendance created",
-                createdAttendance: createdAttendance,
+                data: createdAttendance,
             });
         } else {
             return res.status(400).json({
