@@ -28,6 +28,7 @@
     "node-schedule": "^2.1.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.5",
     "nodemon": "^2.0.15"
   }
 }
