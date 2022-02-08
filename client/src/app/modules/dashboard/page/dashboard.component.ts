@@ -49,12 +49,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getCurrentuser()
   }
 
+  // Get current user
   getCurrentuser() {
     const currentUser = this._tokenStorageService.getDecodedAccessToken();
     this.userId = currentUser.userId;
     this.getAttendances(this.userId);
   }
 
+  // Initialize calendar
   initCalendar() {
     const _this = this;
     _this.calendar = new Calendar(this.calendarEl.nativeElement, {
@@ -98,7 +100,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     _this.calendar.render();
   }
 
-
+  // Get attendances
   getAttendances(value: string): void {
     this.calendar.removeAllEvents();
     this._attendanceService.getAttendances(value)
@@ -133,6 +135,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
   }
 
+  // Get all attendances
   getAllAttendances(): void {
     this.calendar.removeAllEvents();
     this._attendanceService.getAllAttendances()
@@ -167,7 +170,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
   }
 
-
+  // Set event color
   setEventColor(attendance: Attendance): string {
     let color;
     if (attendance.status === 'present') {

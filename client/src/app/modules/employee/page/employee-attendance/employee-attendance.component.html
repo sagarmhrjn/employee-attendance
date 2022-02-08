@@ -1,5 +1,5 @@
 <header class="attendance-header">
-  <h1>My Attendance</h1>
+  <h1>Attendance</h1>
   <ng-container *ngIf="userRole === 'admin'">
     <div class="add-attendance" (click)="openAddAttendanceDialog()" matTooltip="Create a new attendance">
       <mat-icon class="me-4 fs-3">timer</mat-icon>
@@ -64,7 +64,7 @@
         </a>
       </td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   </table>

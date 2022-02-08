@@ -27,3 +27,8 @@ table {
 .add-employee, .action-group-icons{
   @extend cursor-pointer;
 }
+
+.table-container{
+  max-height: 645px;
+  overflow-y: auto;
+}

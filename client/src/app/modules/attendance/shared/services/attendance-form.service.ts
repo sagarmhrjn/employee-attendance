@@ -16,6 +16,9 @@ export class AttendanceFormService {
 
   createAttendanceForm(): FormGroup {
     return this._fb.group({
+      date: [null, Validators.required],
+      start_time: [null, Validators.required],
+      end_time: [null, Validators.required],
       check_in_out: ['check_in', Validators.required],
       remarks: [null]
     });

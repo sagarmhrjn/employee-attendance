@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content class="mat-typography">
+    <form id="attendance-form" [formGroup]="attendanceForm">
+        <mat-form-field>
+            <mat-select formControlName="user" placeholder="Employee" #singleSelect>
+                <mat-option>
+                    <ngx-mat-select-search formControlName="userFilter" placeholderLabel="Search employee...">
+                    </ngx-mat-select-search>
+                </mat-option>
+
+                <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+                    {{user.first_name}}&nbsp;{{user.last_name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div class="attendance-time-range" *ngIf="data.action === 'create'">
+            <div class="check-in-time">
+                <mat-label class="time-label">Check-in</mat-label>
+                <timepicker formControlName="start_time" [hoursPlaceholder]="hoursPlaceholder"
+                    [minutesPlaceholder]="minutesPlaceholder"></timepicker>
+            </div>
+            <div class="check-out-time">
+                <mat-label class="time-label">Check-out</mat-label>
+                <timepicker formControlName="end_time" [hoursPlaceholder]="hoursPlaceholder"
+                    [minutesPlaceholder]="minutesPlaceholder" class="end_time" [disabled]="isDisabled"></timepicker>
+            </div>
+        </div>
+
+        <ng-container *ngIf="data.action === 'edit'">
+            <mat-form-field>
+                <mat-label>Check-in/out</mat-label>
+                <mat-select formControlName="check_in_out">
+                    <mat-option value="check_in">Check-in</mat-option>
+                    <mat-option value="check_out">Check-out</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </ng-container>
+
+        <mat-form-field class="attendance-input-form-field">
+            <mat-label>Remarks</mat-label>
+            <textarea matInput placeholder="" formControlName="remarks"></textarea>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="onAttendanceSubmit(attendanceForm.value)"
+        [disabled]="!attendanceForm.valid">Save</button>
+</mat-dialog-actions>

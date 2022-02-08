@@ -19,12 +19,13 @@ export interface Attendance {
     end_date: string;
     status: string;
     remarks: string;
-    user:string;
+    user: string;
 }
 
 export interface AttendanceDTO {
-    start_date: string;
-    end_date: string;
+    date?: string;
+    start_date: string | null;
+    end_date: string | null;
     status?: string;
     remarks: string;
 }

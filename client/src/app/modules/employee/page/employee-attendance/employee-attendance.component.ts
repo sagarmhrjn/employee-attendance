@@ -1,11 +1,12 @@
-
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
+import { cloneDeep } from 'lodash';
 import { ToastrService } from 'ngx-toastr';
-import { catchError, Subject, takeUntil, tap, throwError } from 'rxjs';
+import { Subject, catchError, throwError, takeUntil, tap } from 'rxjs';
 import { Attendance } from 'src/app/data/attendance/schema/attendance.model';
 import { AttendanceService } from 'src/app/data/attendance/service/attendance.service';
 import { User } from 'src/app/data/user/schema/user.model';
@@ -13,20 +14,18 @@ import { UserService } from 'src/app/data/user/service/user.service';
 import { AttendanceFormDailogComponent } from 'src/app/shared/components/attendance-form-dailog/attendance-form-dailog.component';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
-import * as moment from 'moment';
-import cloneDeep from 'lodash/cloneDeep'
-import { TokenStorageService } from 'src/app/core/services/token-storage.service';
-
 
 @Component({
-  selector: 'app-attendance',
-  templateUrl: './attendance.component.html',
-  styleUrls: ['./attendance.component.scss']
+  selector: 'app-employee-attendance',
+  templateUrl: './employee-attendance.component.html',
+  styleUrls: ['./employee-attendance.component.scss']
 })
-export class AttendanceComponent implements OnInit, OnDestroy {
+export class EmployeeAttendanceComponent implements OnInit {
+
   dataToDisplay: Attendance[] = [];
 
   users: User[] = [];
+  userId: string = ''
   userRole: string = ''
 
   attendances!: Attendance[]
@@ -46,26 +45,21 @@ export class AttendanceComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private _sharedDataService: SharedDataService,
     private _userService: UserService,
-    private _tokenStorageService: TokenStorageService
+    private _activatedRoute: ActivatedRoute
   ) {
   }
 
 
   ngOnInit(): void {
+    this._activatedRoute.params.subscribe(params => {
+      this.userId = params['id'];
+      this.getAttendances(this.userId)
+    });
     this.getCurrentUserRole()
-    this.getCurrentUser()
     this.getUsers()
   }
 
-  // Get current user
-  getCurrentUser() {
-    const currentUser = this._tokenStorageService.getDecodedAccessToken();
-    if (currentUser) {
-      this.getAttendances(currentUser.userId);
-    }
-  }
-
-  // Get users
+  // Get all users
   getUsers(): void {
     this._userService.getUsers()
       .pipe(
@@ -84,7 +78,7 @@ export class AttendanceComponent implements OnInit, OnDestroy {
       });
   }
 
-  // Get current user role
+  // Get current role
   getCurrentUserRole() {
     this._sharedDataService.getCurrentUserRole()
       .pipe(
@@ -98,7 +92,7 @@ export class AttendanceComponent implements OnInit, OnDestroy {
       ).subscribe()
   }
 
-  // Get attendances
+  // Gete user attendnaces
   getAttendances(value: string): void {
     this._attendanceService.getAttendances(value)
       .pipe(
@@ -120,27 +114,7 @@ export class AttendanceComponent implements OnInit, OnDestroy {
       });
   }
 
-  // getAllAttendances(): void {
-  //   this._attendanceService.getAllAttendances()
-  //     .pipe(
-  //       catchError(err => {
-  //         return throwError(() => err);
-  //       }),
-  //       takeUntil(this.destroy$)
-  //     )
-  //     .subscribe({
-  //       next: (attendances: Attendance[]) => {
-  //         this.dataToDisplay = attendances;
-  //         this.dataSource = new MatTableDataSource(this.dataToDisplay);
-  //         this.dataSource.paginator = this.paginator;
-  //         this.dataSource.sort = this.sort;
-  //       },
-  //       error: (err) => {
-  //         this._toastrService.error('Error in fetching attendances', '', { timeOut: 2000 })
-  //       }
-  //     });
-  // }
-
+  // Set status background
   setStatusBackground(value: string): string {
     let badge = 'badge'
     if (value === 'present') {
@@ -245,7 +219,7 @@ export class AttendanceComponent implements OnInit, OnDestroy {
     return value ? value : '-'
   }
 
-  // Open add attendance dialog
+  // Open add attendnace dialog
   openAddAttendanceDialog() {
     const dialogRef = this.dialog.open(AttendanceFormDailogComponent, {
       panelClass: 'mat-dialog-responsive',

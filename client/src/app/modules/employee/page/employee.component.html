@@ -5,55 +5,67 @@
     </div>
 </header>
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
-        <!-- ID Column -->
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-            <td mat-cell *matCellDef="let row;let i = index"> {{i+1}} </td>
-        </ng-container>
+    <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort>
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <td mat-cell *matCellDef="let row;let i = index"> {{i+1}} </td>
+            </ng-container>
 
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-            <td mat-cell *matCellDef="let row"> {{row.first_name }}&nbsp;{{row.last_name}} </td>
-        </ng-container>
+            <ng-container matColumnDef="first_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Firstname </th>
+                <td mat-cell *matCellDef="let row"> {{row.first_name }} </td>
+            </ng-container>
 
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-            <td mat-cell *matCellDef="let row"> {{row.email }} </td>
-        </ng-container>
+            <ng-container matColumnDef="last_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Lastname </th>
+                <td mat-cell *matCellDef="let row"> {{row.last_name}} </td>
+            </ng-container>
 
-        <ng-container matColumnDef="createdAt">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Created At </th>
-            <td mat-cell *matCellDef="let row"> {{row.createdAt | date: 'EEEE, MMMM d, y'}} </td>
-        </ng-container>
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                <td mat-cell *matCellDef="let row"> {{row.email }} </td>
+            </ng-container>
 
-        <ng-container matColumnDef="updatedAt">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated At </th>
-            <td mat-cell *matCellDef="let row"> {{row.createdAt | date: 'EEEE, MMMM d, y'}} </td>
-        </ng-container>
+            <ng-container matColumnDef="createdAt">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Created At </th>
+                <td mat-cell *matCellDef="let row"> {{row.createdAt | date: 'MM/dd/yy, h:mm a'}} </td>
+            </ng-container>
 
-        <ng-container matColumnDef="duration">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated At </th>
-            <td mat-cell *matCellDef="let row"> {{row.createdAt | date: 'EEEE, MMMM d, y'}} </td>
-        </ng-container>
+            <ng-container matColumnDef="updatedAt">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated At </th>
+                <td mat-cell *matCellDef="let row"> {{row.createdAt | date: 'MM/dd/yy, h:mm a'}} </td>
+            </ng-container>
 
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
-            <td mat-cell *matCellDef="let row" class="action-group-icons">
-                <a [routerLink]=""  matTooltip="Update Employee">
-                    <mat-icon aria-hidden="false" aria-label="timer icon" (click)="updateEmployee(row)"
-                       >mode_edit</mat-icon>
-                </a>
-                <a [routerLink]="" (click)="deleteEmployee(row._id)">
-                    <mat-icon aria-hidden="false" aria-label="timer icon" matTooltip="Delete Employee" class="text-danger">delete</mat-icon>
-                </a>
+            <!-- <ng-container matColumnDef="duration">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated At </th>
+                <td mat-cell *matCellDef="let row"> {{row.createdAt | date: 'EEEE, MMMM d, y'}} </td>
+            </ng-container> -->
 
-            </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let row" class="action-group-icons">
+                    <a [routerLink]="['/employees', row._id, 'attendances']" matTooltip="View attendnace">
+                        <mat-icon aria-hidden="false" aria-label="timer icon">visibility
+                        </mat-icon>
+                    </a>
+                    <a [routerLink]="" matTooltip="Update Employee">
+                        <mat-icon aria-hidden="false" aria-label="timer icon" (click)="updateEmployee(row)">mode_edit
+                        </mat-icon>
+                    </a>
+                    <a [routerLink]="" (click)="deleteEmployee(row._id)">
+                        <mat-icon aria-hidden="false" aria-label="timer icon" matTooltip="Delete Employee"
+                            class="text-danger">delete</mat-icon>
+                    </a>
 
-    </table>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of attendance"></mat-paginator>
+        </table>
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="25" aria-label="Select page of attendance">
+    </mat-paginator>
 </div>

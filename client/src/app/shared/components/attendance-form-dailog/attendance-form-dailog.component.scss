@@ -1,0 +1,59 @@
+@import '../../../scss/extend';
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.mat-dialog-title{
+    @extend text-center;
+}
+.attendance-input-form-field{
+    @extend full-width;
+    padding: 5px 0px 5px 2px;
+}
+.attendance-time-range{
+    @extend display-flex;
+    @include justify-content(space-between);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.time-label{
+    color: $gray-600;
+
+    &:hover, &:focus{
+        color: $indigo-500;
+    }
+}
+:host ::ng-deep {
+    &.bs-timepicker-field{
+        width: 46px;
+        @include box-shadow(none);
+
+        &:focus{
+            border-color: $indigo-500;
+        }
+    }
+
+    &tbody {
+        & > tr:nth-child(1), tr:nth-last-child(1) {
+            & td > .btn-link{
+                    color: $indigo-500;
+                }
+        }
+
+        & > tr:nth-child(2) {
+            & > td:nth-last-child(2){
+                display: none;
+            }
+        
+            & > td:nth-last-child(1) button{
+                padding: 5px;
+                font-size: 0.9em;
+                @include box-shadow(none);
+    
+                &:focus{
+                    border-color: $indigo-500;
+                }
+            }
+        }
+    }
+}

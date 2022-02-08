@@ -36,6 +36,14 @@ export class AttendanceService {
       )
   }
 
+  createEmployeeAttendance(id: string, data: AttendanceDTO): Observable<Attendance> {
+    return this._http.post<{ data: Attendance }>('users/' + id + '/attendances/create', data)
+      .pipe(
+        map((user) => user['data'] || {}),
+        catchError(this._handleErrorService.handleError)
+      );;
+  }
+
   getAttendance(): Observable<Attendance> {
     return this._http.get<{ data: Attendance }>('attendances')
       .pipe(

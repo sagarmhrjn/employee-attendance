@@ -4,11 +4,11 @@ import { User, UserDTO } from 'src/app/data/user/schema/user.model';
 import { EmployeeFormService } from '../../services/employee-form.service';
 
 @Component({
-  selector: 'app-register-form-dialog',
-  templateUrl: './register-form-dialog.component.html',
-  styleUrls: ['./register-form-dialog.component.scss']
+  selector: 'app-employee-form-dialog',
+  templateUrl: './employee-form-dialog.component.html',
+  styleUrls: ['./employee-form-dialog.component.scss']
 })
-export class RegisterFormDialogComponent implements OnInit, OnDestroy {
+export class EmployeeFormDialogComponent implements OnInit, OnDestroy {
   isPasswordField: boolean = true;
   hide: boolean = true
   userRole!: string;
@@ -58,7 +58,7 @@ export class RegisterFormDialogComponent implements OnInit, OnDestroy {
       first_name: data.first_name,
       last_name: data.last_name,
       email: data.email,
-      role: data.role_name
+      role: data.role.name
     })
   }
 

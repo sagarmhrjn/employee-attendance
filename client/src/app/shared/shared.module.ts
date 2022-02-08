@@ -13,13 +13,20 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { AttendanceFormDailogComponent } from './components/attendance-form-dailog/attendance-form-dailog.component';
+import { MatSortModule } from '@angular/material/sort';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 
 
 @NgModule({
   declarations: [
 
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    AttendanceFormDailogComponent
   ],
   imports: [
     CommonModule,
@@ -29,10 +36,21 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     ReactiveFormsModule,
 
     MatButtonModule,
+    
+    MatFormFieldModule,
+    MatInputModule,
+
+    MatSelectModule,
+
+    MatDatepickerModule,
+    MatNativeDateModule,
+    TimepickerModule,
+
     MatDialogModule,
     MatTooltipModule,
 
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxMatSelectSearchModule
   ],
   exports: [
     HttpClientModule,
@@ -41,6 +59,8 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 
     MatTableModule,
     MatPaginatorModule,
+    MatSortModule,
+    
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
@@ -49,10 +69,16 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     MatButtonModule,
     MatTooltipModule,
 
+    MatDatepickerModule,
+    MatNativeDateModule,
+    TimepickerModule,
+
     ToastrModule,
 
-    ConfirmationDialogComponent
+    NgxMatSelectSearchModule,
 
+    ConfirmationDialogComponent,
+    AttendanceFormDailogComponent
   ]
 })
 export class SharedModule { }
